@@ -3,9 +3,13 @@ package co.com.ps.c24a.service;
 import co.com.ps.c24a.entity.Person;
 import co.com.ps.c24a.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
+@Service
 @RequiredArgsConstructor
 public class PersonServiceImp implements PersonService{
 
@@ -37,5 +41,12 @@ public class PersonServiceImp implements PersonService{
             throw  new RuntimeException("No encontre esa persona");
         }
         personRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Person> getPersonAll() {
+        List<Person> tmp = new ArrayList<>();
+        personRepository.findAll().forEach(tmp::add);
+        return tmp;
     }
 }
