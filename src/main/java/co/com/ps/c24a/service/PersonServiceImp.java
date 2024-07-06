@@ -2,6 +2,10 @@ package co.com.ps.c24a.service;
 
 import co.com.ps.c24a.entity.Person;
 import co.com.ps.c24a.repository.PersonRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-
+@Tag(name = "Person API", description = "API for managing persons")
 @Service
 @RequiredArgsConstructor
 public class PersonServiceImp implements PersonService{
@@ -44,7 +48,6 @@ public class PersonServiceImp implements PersonService{
         personRepository.deleteById(id);
     }
 
-    @Override
     public List<Person> getPersonAll() {
         List<Person> tmp = new ArrayList<>();
         personRepository.findAll().forEach(tmp::add);
